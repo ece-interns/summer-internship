@@ -5,6 +5,8 @@ import {Routes,Route} from 'react-router-dom';
 import Home from '../src/page/Home/Home';
 import About from '../src/page/About/About';
 import Contact from '../src/page/Contact/Contact';
+//components
+import Header from '../src/components/Header/Header';
 
 function App() {
   return (

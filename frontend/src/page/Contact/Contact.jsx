@@ -1,9 +1,13 @@
 import React from 'react';
 import './Contact.css';
+import Header from '../../components/Header/Header';
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <div>
+      <Header/>
+      Contact
+    </div>
   )
 }
 

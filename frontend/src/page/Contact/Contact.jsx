@@ -1,9 +1,32 @@
-import React from 'react';
-import './Contact.css';
+import React from 'react'
+import './Contact.css'
 
-const Contact = () => {
+function Contact() {
   return (
-    <div>Contact</div>
+    <>
+    <div className="contact">
+        <main>
+            <h1>Contact Us</h1>
+
+            <form >
+                <div>
+                    <label >Name</label>
+                    <input type="text" required placeholder='abc'/>
+                </div>
+                <div>
+                    <label >Email</label>
+                    <input type="email" required placeholder='abc@xyz.com'/>
+                </div>
+                <div>
+                    <label >Message</label>
+                    <input type="text" required placeholder='Tell us about your queries..'/>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+    </div>
+    </>
   )
 }
 

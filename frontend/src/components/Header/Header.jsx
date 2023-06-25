@@ -1,32 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
 import {AppName} from '../../utils/constants';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import NavItem from '../NavItem/NavItem';
+import navItems from '../../utils/navItems';
 
-const Header = () => {
+const Header = ({page="home"}) => {
+  const [activeItem, setActiveItem] = useState('');
+  const {pathname} = useLocation();
+  useEffect(() => {
+    setActiveItem(pathname)
+  }, [pathname]);
   return (
-    <header className='header'>
-      <div className="header-content">
-        <div className="logo">
-          <Link to='/'>
-            {AppName}
-          </Link>
+    <header className={pathname==="/"?"header home":"header other"}>
+      <nav>
+        <Link to='/'><h1 className='logo'>{AppName}</h1></Link>
+        <div className="nav-links">
+          <ul>
+          {navItems.slice(0, 4).map(({ name, path }) => (
+              <NavItem
+                key={path}
+                name={name}
+                path={path}
+                activeItem={activeItem}
+                setActiveItem={setActiveItem}
+              />
+            ))}
+          </ul>
         </div>
-        <nav>
-          <Link to='/about'>
-            <div className='nav-link'>About</div>
-          </Link>
-          <Link to='/contact'>
-            <div className='nav-link'>Contact</div>
-          </Link>
-          <Link to='/profile'>
-            <div className='nav-link'>Profile</div>
-          </Link>
-          <Link to='/login'>
-            <div className='nav-link'>Login</div>
-          </Link>
-        </nav>
-      </div>
+      </nav>
+      {
+        pathname==="/" && (
+          <div className="search-section">
+            <h1>{AppName}</h1>
+          </div>
+        )
+      }
     </header>
   )
 }

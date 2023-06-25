@@ -1,54 +1,10 @@
-/* .header{
-    position: relative;
-    color: #000;
-    border-bottom: 1px solid #000;
-}
-.logo{
-    font-size: 2rem;
-    font-weight: bold;
-    /* color: #000; */
-/* }
-.header-content a{
-    text-decoration: none;
-    color: inherit;
-}
-.header-content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5px 10px;
-}
-.header-content nav{
-    display: flex; */
-/* }
-.header-content .nav-link{
-    font-size: 1.1rem;
-    color: #000;
-}
-
-.header-content nav > *:not(:last-child){
-    padding-right: 10px;
-/* } */ 
-
-/* 
-@media screen and (max-width:700px) {
-    /* .background{
-        height: 300px;
-        /* opacity: 0.7;
-    } */ 
-/* }   */
-/* */ 
-
-
 .header{
     width: 100%;
     position: relative;
     font-family: 'Poppins', sans-serif;
 }
 .home{
-    background-image: url("https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png");
+    background-image: url("../../assets/background-2.avif");
     background-position: center;
     background-size: cover;
     height: 60vh;
@@ -89,7 +45,6 @@ nav .nav-links ul li:hover{
     cursor: pointer;
 }
 nav .nav-links ul li a{
-    /* color: #fff; */
     text-decoration: none;
     font-size: 13px;
 }
@@ -113,4 +68,46 @@ nav .nav-links ul li.nav-active::after{
     display: block;
     margin: auto;
     transition: 0.5s;
+}
+.search-section{
+    text-align: center;
+    margin: 80px 10px 10px 10px;
+}
+.search-section h1{
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+.search-container .form-group{
+    display: flex;
+    width: 70%;
+    max-width: 700px;
+    margin: 10px auto;
+    background-color: #fff;
+    color: #000;
+    height: 40px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+.search-container .form-group label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 100%;
+    font-size: 20px;
+    cursor: pointer;
+}
+.search-container .form-group input{
+    flex: 1;
+    height: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    font-style: italic;
+}
+.search-container .search-text{
+    font-size: 20px;
+    margin: 10px auto 20px auto;
 }

@@ -1,4 +1,4 @@
-.header{
+/* .header{
     position: relative;
     color: #000;
     border-bottom: 1px solid #000;
@@ -7,7 +7,7 @@
     font-size: 2rem;
     font-weight: bold;
     /* color: #000; */
-}
+/* }
 .header-content a{
     text-decoration: none;
     color: inherit;
@@ -21,8 +21,8 @@
     padding: 5px 10px;
 }
 .header-content nav{
-    display: flex;
-}
+    display: flex; */
+/* }
 .header-content .nav-link{
     font-size: 1.1rem;
     color: #000;
@@ -30,12 +30,87 @@
 
 .header-content nav > *:not(:last-child){
     padding-right: 10px;
-}
+/* } */ 
 
-
+/* 
 @media screen and (max-width:700px) {
     /* .background{
         height: 300px;
         /* opacity: 0.7;
     } */ 
+/* }   */
+/* */ 
+
+
+.header{
+    width: 100%;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+.home{
+    background-image: url("https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png");
+    background-position: center;
+    background-size: cover;
+    height: 60vh;
+    color: #fff;
+}
+.other{
+    color:#000;
+}
+.home a{
+    color: #fff;
+}
+.other a{
+    color: #000;
+}
+.header .logo{
+    font-size: 1.8rem;
+}
+.header a{
+    text-decoration: none;
+}
+nav{
+    display: flex;
+    padding: 1% 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+nav .nav-links{
+    flex: 1;
+    text-align: right;
+}
+nav .nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+nav .nav-links ul li:hover{
+    cursor: pointer;
+}
+nav .nav-links ul li a{
+    /* color: #fff; */
+    text-decoration: none;
+    font-size: 13px;
+}
+nav .nav-links ul li.nav-inactive::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+nav .nav-links ul li.nav-inactive:hover::after{
+    width: 100%;
+}
+nav .nav-links ul li.nav-active::after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import {AppName} from '../../utils/constants'
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -10,7 +11,7 @@ const Footer = () => {
     <div className="footer">
       <div className="top">
         <div className="top1">
-          <h2>FRESHFOODMEAL</h2>
+          <h2>{AppName}</h2>
           <div className="lang">
             <select>
               <option value="India">India</option>

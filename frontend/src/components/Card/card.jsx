@@ -1,5 +1,6 @@
 import React from "react";
 import "./card.css";
+import { Link } from 'react-router-dom';
 import restaurant1 from "../../assets/restaurant1.jpg";
 import restaurant2 from "../../assets/restaurant2.jpg";
 import restaurant3 from "../../assets/restaurant3.jpg";
@@ -9,13 +10,15 @@ import restaurants from "../../assets/restaurants.jpg";
 const card = () => {
   return (
     <div className="restarunts">
-        <h1 className="heading">Popular Restaurants In The Town</h1>
+        <div className="heading"><h1>Popular Restaurants In The Town</h1></div>
     <div className="card">
+    <Link to="/products">
       <div className="cardImg">
         <img src={restaurant1} alt="restaurant1Img" />
         <h1>Restraunt1</h1>
         <span>"Experience Culinary Nirvana at our Award-Winning Restaurant - Where Flavor Reigns Supreme!"</span>
       </div>
+    </Link>
       <div className="cardImg">
         <img src={restaurant2} alt="restaurant2.jpg" />
         <h1>Restaurant2</h1>

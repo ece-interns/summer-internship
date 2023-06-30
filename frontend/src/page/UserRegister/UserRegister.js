@@ -1,37 +1,36 @@
 import React, { useState, useEffect } from "react";
-import "./UserProfile.css";
+import "./UserRegister.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useRegisterMutation } from "../../app/usersApiSlice";
 import { setCredentials } from "../../app/authSlice";
 import { toast } from "react-toastify";
-import { useUpdateUserMutation } from "../../app/usersApiSlice";
 
-const UserProfile = () => {
+const UserRegister = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mobile_no, setMobile_no] = useState("");
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [register, { isLoading }] = useRegisterMutation();
   const { userInfo } = useSelector((state) => state.auth);
-  const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
   useEffect(() => {
-    setName(userInfo.name);
-    setEmail(userInfo.email);
-    setMobile_no(userInfo.mobile_no);
-  }, [userInfo.name, userInfo.email, userInfo.mobile_no]);
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (!name || !email || !mobile_no) return;
+    if (!name || !email || !password || !mobile_no) return;
     try {
-      let user = { name, email, mobile_no };
-      if (password.length !== 0) {
-        user = { ...user, password };
-      }
-      const res = await updateProfile(user).unwrap();
+      const res = await register({ name, email, password, mobile_no }).unwrap();
       dispatch(setCredentials({ ...res }));
-      toast.success("Profile Updated");
+      toast.success("Registration Successful");
+      navigate("/");
     } catch (err) {
       console.log(err?.data?.message || err.error);
       toast.error(err?.data?.message || err.error);
@@ -41,7 +40,7 @@ const UserProfile = () => {
   return (
     <>
       <div>
-        <h1>Update Profile</h1>
+        <h1>Register</h1>
         {isLoading && <h3>Loading ...</h3>}
         <form onSubmit={submitHandler}>
           <div className="form-group">
@@ -74,6 +73,7 @@ const UserProfile = () => {
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required={true}
             />
           </div>
           <div className="form-group">
@@ -87,11 +87,14 @@ const UserProfile = () => {
               required={true}
             />
           </div>
-          <button type="submit">Update</button>
+          <button type="submit">Register</button>
         </form>
+        <div>
+          Already Have An Account? <Link to="/user/login">Login</Link>
+        </div>
       </div>
     </>
   );
 };
 
-export default UserProfile;
+export default UserRegister;

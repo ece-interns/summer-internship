@@ -1,6 +1,5 @@
 import express from "express";
 import multer from "multer";
-import cloudinaryConfig from "../utils/cloudinaryConfig.js";
 import {
   createProduct,
   deleteImage,
@@ -12,7 +11,6 @@ import {
 import { protectRestaurant } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
-cloudinaryConfig();
 const upload = multer();
 
 router.route("/").post(protectRestaurant, createProduct);
@@ -21,9 +19,8 @@ router.route("/:produtct_id").delete(protectRestaurant, deleteProduct);
 router.get("/:restaurant_id", getProductByRestaurantId);
 
 router
-  .use(upload.single("image"))
-  .route("/image")
-  .post(protectRestaurant, uploadImage);
+  .use(protectRestaurant)
+  .post("/image", upload.single("image"), uploadImage);
 router.route("/image").delete(protectRestaurant, deleteImage);
 
 export default router;

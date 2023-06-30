@@ -4,7 +4,7 @@ import generateTokenUser from "../utils/generateToken.user.js";
 
 // @method POST /api/users/signup
 export const signUpUser = asyncHandler(async (req, res) => {
-  const { name, email, password, mobile_no } = JSON.parse(req.body);
+  const { name, email, password, mobile_no } = req.body;
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
@@ -32,7 +32,7 @@ export const signUpUser = asyncHandler(async (req, res) => {
 
 // @method POST /api/users/auth
 export const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = JSON.parse(req.body);
+  const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user && (await user.matchPasswords(password))) {
     generateTokenUser(res, user._id);
@@ -70,7 +70,7 @@ export const getUser = asyncHandler(async (req, res) => {
 
 // @method PATCH /api/users
 export const updateUser = asyncHandler(async (req, res) => {
-  const userData = JSON.parse(req.body);
+  const userData = req.body;
   const user = await User.findById(req.user._id);
   if (user) {
     user.name = userData.name || user.name;

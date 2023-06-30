@@ -6,7 +6,7 @@ import deleteFromCloudinary from "../utils/deleteFromCloudinary.js";
 // @method POST /api/products
 export const createProduct = asyncHandler(async (req, res) => {
   const { restaurantId, name, cuisine, category, image, price, description } =
-    JSON.parse(req.body);
+    req.body;
   const product = await Product.create({
     restaurantId,
     name,
@@ -35,7 +35,7 @@ export const createProduct = asyncHandler(async (req, res) => {
 
 // @method POST /api/products/:product_id
 export const updateProduct = asyncHandler(async (req, res) => {
-  const productData = JSON.parse(req.body);
+  const productData = req.body;
   const product = await Product.findById(req.params.product_id);
   if (product) {
     product.name = productData.name || product.name;

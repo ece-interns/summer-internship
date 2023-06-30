@@ -4,7 +4,7 @@ import Restaurant from "../models/Restaurant.js";
 import generateTokenRestaurant from "../utils/generateToken.restaurant.js";
 import randomNumber from "../utils/randomNumber.js";
 import uploadToCloudinary from "../utils/uploadToCloudinary.js";
-import deleteFromCloudinary from "../utils/deleteFromCloudinary";
+import deleteFromCloudinary from "../utils/deleteFromCloudinary.js";
 
 // @method POST /api/restaurants/signup
 export const signUpRestaurant = asyncHandler(async (req, res) => {
@@ -17,7 +17,7 @@ export const signUpRestaurant = asyncHandler(async (req, res) => {
     address,
     description,
     images,
-  } = JSON.parse(req.body);
+  } = req.body;
   const randomNum = randomNumber();
   const slug = `${slugify(name, { lower: true, trim: true })}-${randomNum}`;
   const restaurantExists = await Restaurant.findOne({ email });
@@ -57,7 +57,7 @@ export const signUpRestaurant = asyncHandler(async (req, res) => {
 
 // @method POST /api/restaurants/auth
 export const authRestaurant = asyncHandler(async (req, res) => {
-  const { email, password } = JSON.parse(req.body);
+  const { email, password } = req.body;
   const restaurant = await Restaurant.findOne({ email });
   if (restaurant && (await restaurant.matchPasswords(password))) {
     generateTokenRestaurant(res, restaurant._id);
@@ -89,7 +89,7 @@ export const logoutRestaurant = asyncHandler(async (req, res) => {
 
 // @method PATCH /api/restaurants
 export const updateRestaurant = asyncHandler(async (req, res) => {
-  const restaurantData = JSON.parse(req.body);
+  const restaurantData = req.body;
   const restaurant = await Restaurant.findById(req.restaurant._id);
   if (restaurant) {
     restaurant.name = restaurantData.name || restaurant.name;
@@ -157,7 +157,7 @@ export const uploadImages = async (req, res) => {
 // @method POST /api/restaurants/delete-images
 export const deleteImages = async (req, res) => {
   try {
-    const { public_ids } = JSON.parse(req.body);
+    const { public_ids } = req.body;
     if (public_ids) {
       for (let i = 0; i < public_ids.length; i++) {
         await deleteFromCloudinary(public_ids[i]);
